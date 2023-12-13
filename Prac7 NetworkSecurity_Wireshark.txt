@@ -1,0 +1,36 @@
+Open wireshark and Start
+1)inspect traffic from specific ip address
+open cmd and check your ip address : ipconfig  i.e 192.168.2.232
+wireshark type: ip.addr == 192.168.2.232
+try with ip.addr == 192.168.2.44
+comment 232 and 44 are display i.e there ip address are either the source or destination
+
+2)Sniff the credentials details from vulnerable website
+visit:- http://testphp.vulnweb.com/logins.php 
+and login
+stop wireshark
+http.request.method==post
+
+3) Find out the packets which gets Page Not Found response
+visit : http://testphp.vulnweb.com/logins.php 
+stop
+apply filter: http.response.code == 404                        protocol=http
+check hypertext transfer protocol
+
+4) Find out the packet which gets response
+start wireshark
+visit anywebsite i.e testphp
+stop and apply filter: http.response.code ==200
+check http - status code:200
+
+5) Find out the packets in which url contains “testphp” as substring
+start wireshark visit testphp then stop 
+apply filter: http.referer contains “testphp”
+check http 
+
+6)Find out packets which reveal what user has typed in Google Search Engine.
+Filter used: ip.addr == 192.168.2.232 && nbns
+visit any website then stop
+check USer Datagram protocol(lower section)
+
+B)Dos attack using ColaSoft
