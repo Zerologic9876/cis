@@ -1,0 +1,21 @@
+Cain and Abel
+
+Dowload WinpCap and install
+Turn off firewall by   Window setting->Firewall and network Protection
+turn off domain,private and public network
+Dowload Cain and abel
+Go to 'virus and threat'->protection history
+Allow for all threat
+install cain and abel
+don't install packet driver
+---------Dictionary Attack--------------
+Click on hash calculator
+Enter any text (Text to hash)i.e deadpool->calculate
+Copy MD5 text close hash window
+on left side Cracker->MD5 hashes
+Click anywhere on screen then click on '+'icon
+paste the MD5 add click ok
+select the MD5 value an right click and select Dictionary attack
+pop up will appear go to "dictionary" section and right click -> Add to list
+it will ask for location:c>program file>Cain>Wordlist folder>Wordlist.txt
+Start

