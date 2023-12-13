@@ -2,7 +2,7 @@
 2)project name > next 
 3)enable google analytics -- default account for firebase
 4)create project
-5)build>firestore>create database
+5)build>firestore Database>create database
 6)set default>next>production mode>next
 7)panel view ala bs zla
 8)build>authentication>get started
