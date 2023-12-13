@@ -1,0 +1,79 @@
+1)go to firebase > create project
+2)project name > next 
+3)enable google analytics -- default account for firebase
+4)create project
+5)build>firestore>create database
+6)set default>next>production mode>next
+7)panel view ala bs zla
+8)build>authentication>get started
+9)sign in method select email and password and enable it
+10)select user>add user
+create new entity for author,admin,user
+11)email janhavi08@gmail.com     password>janhavi08*(author)bPOk4tEZ5kaTJxA3TrPd8pKPbrI3
+12)email computer23@gmail.com   password   #computer45(admin)YJj8Bj4bE8eVNuE1SZkOMRSMUDL2
+13)email  tanvi23@gmail.com   password  tanvi23#(user)Y8TK25u33KOIpmiNN39HAOvpf833
+14)copy uids it will be used in databasse
+15)firebase database>start collection
+16)3 Users (user,author & admin) with type attribute for each. The document ID for each user will be their UID obtained from authentication
+17)collection--->admin but name it as user
+doc. id is uid of each
+field>uid    type>string  value>doc.id
+add field
+field>type   type>string  value>admin
+for applying fireestore rules
+go to rules section(data ch bajula)
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if false;
+    }
+  }
+}
+
+Test the Rule by Rules Playground located at bottom left
+simulation>get locn>Blogs/EHXy8bbOO9BsqM7Q30WO(blog uid) authen.. off>run
+----Simulated read allowed-------------------------
+
+Only Author of the blogs can edit the contents
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth!=null && request.auth.uid == resource
+      allow delete: if request.auth!=null && request.auth.uid == resource
+    }
+  }
+}
+
+simulation type>update      locn:Blogs/  authen. on
+Add Firebase UID as Blog author’s UID & set Provider as “password”
+
+
+ 
+
+
+collection--->author but name it as user
+doc. id is uid of each
+field>uid    type>string  value>doc.id
+field>type   type>string  value>author
+
+collection--->user but name it as user
+doc. id is uid of each
+field>uid    type>string  value>doc.id
+field>type   type>string  value>user
+
+18)Similarly Start another collection - Blogs. Follow below screenshots. UID value will be the author user UID.
+
+collection--->Blogs
+click auto id
+field>title   type>string  value>Test-Blog-1
+field>uid   type>string  value>author uid
+
+----------Simulated read allowed--------------(check once) write havay
+
+simulation type>delete for delete successfully
