@@ -33,7 +33,7 @@ Test the Rule by Rules Playground located at bottom left
 simulation>get locn>Blogs/EHXy8bbOO9BsqM7Q30WO(blog uid) authen.. off>run
 ----Simulated read allowed-------------------------
 
-Only Author of the blogs can edit the contents
+------Only Author of the blogs can edit the contents---------
 
 rules_version = '2';
 
@@ -48,29 +48,17 @@ service cloud.firestore {
 }
 
 simulation type>update      locn:Blogs/  authen. on
-Add Firebase UID as Blog author’s UID & set Provider as “password”
+Add Firebase UID as Blog author’s UID & set Provider as “password”  
+conclusion:-Write by autor allowed
 
+---------User as author trying to delete a blog------------------
+simulate type -> delete 
+location-> Blogs/Blogs UID
+conclusion: Delete by Author allowed
 
- 
+-----------User as Admin trying to edit blog--------------
+type>update 
 
+Location:Blogs/Author UID
+Conclusion: Write by Admin not allowed.Admin are not allowed to edit blogs
 
-collection--->author but name it as user
-doc. id is uid of each
-field>uid    type>string  value>doc.id
-field>type   type>string  value>author
-
-collection--->user but name it as user
-doc. id is uid of each
-field>uid    type>string  value>doc.id
-field>type   type>string  value>user
-
-18)Similarly Start another collection - Blogs. Follow below screenshots. UID value will be the author user UID.
-
-collection--->Blogs
-click auto id
-field>title   type>string  value>Test-Blog-1
-field>uid   type>string  value>author uid
-
-----------Simulated read allowed--------------(check once) write havay
-
-simulation type>delete for delete successfully
