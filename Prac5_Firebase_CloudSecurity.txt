@@ -2,7 +2,7 @@
 2)project name > next 
 3)enable google analytics -- default account for firebase
 4)create project
-5)build>firestore Database>create database
+5)build>firestore>create database
 6)set default>next>production mode>next
 7)panel view ala bs zla
 8)build>authentication>get started
@@ -14,13 +14,10 @@ create new entity for author,admin,user
 13)email  tanvi23@gmail.com   password  tanvi23#(user)Y8TK25u33KOIpmiNN39HAOvpf833
 14)copy uids it will be used in databasse
 15)firebase database>start collection
-16)3 Users (user,author & admin) with type attribute for each. The document ID for each user will be their UID obtained from authentication
-17)collection--->admin but name it as user
-doc. id is uid of each
-field>uid    type>string  value>doc.id
-add field
-field>type   type>string  value>admin
-for applying fireestore rules
+16)3 Users (user,author & admin) for author add uid id in top and in down define 2 attribute 'uid'(enter author uid) and 'type'(author) do the same for user and admin
+17)Start Collection-> Blogs 
+click autoID generate in which define 2 attribute 'uid'(paste UID of "AUTHOR") and 'title'(use "Test-Blogs")
+
 go to rules section(data ch bajula)
 rules_version = '2';
 
