@@ -1,0 +1,171 @@
+1. Creating Process Logs 
+
+
+Create a java file with name LOGS.java
+import java.io.FileWriter;
+
+public class LOGS {
+    public static void main(String[] args) {
+        try {
+            String cmd = "WMIC /OUTPUT:C:\\CIS\\LIST.HTML PROCESS get name,processid,creationdate /format:hform";
+            FileWriter fos = new FileWriter("C:\\CIS\\mycmd.bat");
+            System.out.println("File created");
+            fos.write(cmd);
+            fos.close();
+            Runtime rt = Runtime.getRuntime();
+            rt.exec("cmd.exe /c start C:\\CIS\\mycmd.bat");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+LIST.HTML file will create Open it
+
+2. Creating Error Logs
+Python code - ERR1.py
+
+import logging
+
+def error_logging():
+    f = open("D:\\errorLogs.txt", "a")
+
+    def error_NameError():
+        try:
+            print("value of a", a)
+        except NameError as namelog:
+            logging.error("Error occurred: ValueError has occurred...")
+            print("NameError Logged")
+            f.write("1. Name Error\n" + str(namelog))
+
+    def error_ModuleNotFoundError():
+        try:
+            import abcmodule
+        except ModuleNotFoundError as modulelog:
+            logging.error("Error occurred: ModuleNotFoundError has occurred...")
+            print("ModuleError Logged")
+            f.write("\n\n2. Module Error\n" + str(modulelog))
+
+    def error_IndexError():
+        var_list = [3, 1, 2]
+        try:
+            print(var_list[5])
+        except IndexError as indexlog:
+            logging.error("Error occurred: IndexError has occurred, invalid list indexing...")
+            print("IndexError Logged")
+            f.write("\n\n3. Index Error\n" + str(indexlog))
+
+    def error_ZeroDivisionError():
+        try:
+            C = 3 / 0
+        except ZeroDivisionError as zerodivlog:
+            logging.error("Error occurred: ZeroDivisionError has occurred...")
+            print("ZeroDivisionError Logged")
+            f.write("\n\n4. Zero Division Error\n" + str(zerodivlog))
+
+    def error_KeyError():
+        var_dict = {1: "A word", 2: 'Another word'}
+        try:
+            var_dict[3]
+        except KeyError as keylog:
+            logging.error("Error occurred: KeyError has occurred...")
+            print("KeyError Logged")
+            f.write("\n\n5. Key Error\n" + str(keylog))
+
+    def error_TypeError():
+        try:
+            d = 3 + '3'
+        except TypeError as typelog:
+            logging.error("Error occurred: TypeError has occurred...")
+            print("TypeError Logged")
+            f.write("\n\n6. Type Error\n" + str(typelog))
+
+    def error_KeyboardInterrupt():
+        try:
+            while True:
+                print(3)
+        except KeyboardInterrupt as keyboardinterruptlog:
+            logging.error("Error occurred: KeyboardInterrupt has occurred...")
+            print("Keyboardinterrupt Logged")
+            f.write("\n\n7. Keyboard Interrupt Error\n" + str(keyboardinterruptlog))
+
+    def critical_error():
+        list_size = 536870912
+        if list_size > 100:
+            logging.critical("Critical Error occurred: Huge resources requested, cannot provide so much memory for list...")
+            print("critical_error Logged")
+            f.write("\n\n8. Critical Error")
+        else:
+            # creating a list with all 0 elements
+            var_list = []
+            for i in range(list_size):
+                var_list.append(0)
+
+    # level-logging.DEBUG has the lowest priority so it will log debug, info, warning, etc.
+    logging.basicConfig(filename="LogFile.log", level=logging.DEBUG, filemode='w',
+                        format='Time: %(asctime)s - Name: %(name)s - FilePath: - %(pathname)s - '
+                               'FunctionName: %(funcName)s - LevelName:%(levelname)s - Message:%(message)s'
+                               ' - Line Number: - %(lineno)d - ProcessID:%(process)d - ThreadID: %(thread)d')
+
+    logging.debug("Executing code and logging errors if any...")
+    logging.warning("Error expected in multiple functions to be tested")
+    logging.info("Program has started...")
+
+    error_NameError()
+    error_ModuleNotFoundError()
+    error_IndexError()
+    error_ZeroDivisionError()
+    error_KeyError()
+    error_TypeError()
+    error_KeyboardInterrupt()
+    critical_error()
+
+error_logging()
+
+3. Backup(file name- Backup.py)
+Create Python file 
+
+import os
+
+def backup(path, user, dbname, backuppath, filename):
+    cmd = "mysqldump -u " + user + " -p " + dbname + " > " + backuppath + filename
+    os.chdir(path)
+    os.system(cmd)
+    print("Database Backup Successful!")
+    # print(cmd)
+
+path = input("Enter the MySQL Path:")
+user = input("Enter the Username:")
+dbname = input("Enter the Database name:")
+backuppath = input("Enter the Backup Path:")
+filename = input("Enter the Backup Name:")
+
+backup(path, user, dbname, backuppath, filename)
+
+-----------------------------------
+Create table in mysql with name "test.bckup_emp"
+
+create table test.bckup_emp(EmpID PRIMARY KEY, Name  varchar(255), Department Varchar(255) , Salary decimal(10,2));
+
+insert into test.bckup_emp(EmpID, Name , Department  , Salary) values (1,Emp1,HR,20000.00),(2,Emp2,Marketing,22000.00),(3,Emp3,Accounts,30000.00)
+
+Run "Backup.py"
+
+4.Restore(Create python file name;- Restore.py)
+
+import os
+
+def restore_database(path, user, dbname, backuppath, filename):
+    cmd = "mysql -u " + user + " -p " + dbname + " < " + backuppath + filename
+    os.chdir(path)
+    os.system(cmd)
+    print(cmd)
+    print("Database Restore Completed!")
+
+path = input("Enter MySQL path: ")
+user = input("Enter Username: ")
+dbname = input("Enter Database Name: ")
+backuppath = input("Enter Backup Path: ")
+filename = input("Enter Filename:")
+
+restore_database(path, user, dbname, backuppath, filename)
