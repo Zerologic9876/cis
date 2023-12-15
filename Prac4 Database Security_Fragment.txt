@@ -26,11 +26,27 @@ Node 1 = system orcl orcl
 Node 2 = student student mscora
 
 At node 1
-empglobe(eno,name,address,email,sal)
+empglobe(eno, name, address, email, sal) 
+create table empglobe ( 
+eno number(30), 
+name char(20), 
+address varchar2(30), 
+email varchar2(30), 
+sal number(7, 2)); 
 empnode1(eno,name,address)
+
+empnode1(eno, name, address) 
+create table empnode1 ( 
+eno number(30), 
+name char(20), 
+address varchar2(30));
 
 At node 2
 empnode2(eno,email,sal)
+Create table empnode2( 
+Eno number(30), 
+email varchar2(30), 
+sal number(7, 2));
 
 At node1
 Syntax:
@@ -60,6 +76,11 @@ Node 1
 insert into empglobe values(1,'Ruchi Mali','Khopat','Thane','ruchi@gmail.com','60000')
 add 3 more value
 
+Check results of trigger on both the nodes 
+● Select * from empglobe; 
+● Select * from empnode1; 
+● Select * from empnode2@link1;
+
 (2)Horizontal Fragmentation
 node1
 emp101(eno,name,address,email,sal)
@@ -88,3 +109,13 @@ values(:new.eno,:new.name,:new.address,:new.email,:new.salary);
 end if;
 end;
 /
+
+Node 1 
+At node 1 execute following statements. 
+insert into empglobe values(1, ‘Samiksha’, ‘Mulund’, ‘sam@gmail.com’, ‘30000.00’);
+insert into empglobe values(2, ‘Anushka’, ‘Thane’, ‘nush@gmail.com’, ‘12000.00’);
+insert into empglobe values(3, ‘Janhavi’, ‘Badalapur’, ‘janhavi@gmail.com’, ‘23000.00’);
+Check results of trigger on both the nodes 
+● Select * from empglobe2 
+● Select * from emp101; 
+● Select * from emp102@link2; 
