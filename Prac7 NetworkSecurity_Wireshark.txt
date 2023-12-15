@@ -33,6 +33,16 @@ Filter used: ip.addr == 192.168.2.232 && nbns
 visit any website then stop
 check USer Datagram protocol(lower section)
 
+7) Find out browser sopecific packets
+Filter use: http.user_agent contains Chrome
+Start capturing->visit chrome->Stop
+Apply filter and check "Simple Service Discovery Protocol"
+
+8)Display Dos attack by ping command
+Filter use: icmp or no filter
+Start capture->open cmd-> ping -t www.amazon.com ->stop capturing
+Apply filter: icmp
+
 B)Dos attack using ColaSoft
 1)extract pktbuilder_free https://www.colasoft.com/download/products/download_packet_builder.php
 2)run this pktbuilder_2.0.0.215.exe application
