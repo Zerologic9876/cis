@@ -9,9 +9,9 @@
 9)sign in method select email and password and enable it
 10)select user>add user
 create new entity for author,admin,user
-11)email janhavi08@gmail.com     password>janhavi08*(author)bPOk4tEZ5kaTJxA3TrPd8pKPbrI3
-12)email computer23@gmail.com   password   #computer45(admin)YJj8Bj4bE8eVNuE1SZkOMRSMUDL2
-13)email  tanvi23@gmail.com   password  tanvi23#(user)Y8TK25u33KOIpmiNN39HAOvpf833
+11)email author@gmail.com     password>author*(author)bPOk4tEZ5kaTJxA3TrPd8pKPbrI3
+12)email admin@gmail.com   password   #admin(admin)YJj8Bj4bE8eVNuE1SZkOMRSMUDL2
+13)email  user@gmail.com   password  user#(user)Y8TK25u33KOIpmiNN39HAOvpf833
 14)copy uids it will be used in databasse
 15)firebase database>start collection
 16)3 Users (user,author & admin) for author add uid id in top and in down define 2 attribute 'uid'(enter author uid) and 'type'(author) do the same for user and admin
